@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from youtube_transcript_api import YouTubeTranscriptApi
 from urllib.parse import urlparse, parse_qs
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)  # フロントエンドと連携するためにCORS許可
@@ -38,6 +39,7 @@ def get_subtitles():
         return jsonify(result)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
+s
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
