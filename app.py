@@ -29,7 +29,9 @@ def get_subtitles():
         return jsonify({'error': '動画IDが見つかりません'}), 400
 
     try:
-        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+        # transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+        ytt_api = YouTubeTranscriptApi()
+        transcript = ytt_api.fetch(video_id, languages=['en'])
         result = []
         for entry in transcript:
             result.append({
